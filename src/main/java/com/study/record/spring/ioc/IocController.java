@@ -2,6 +2,7 @@ package com.study.record.spring.ioc;
 
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -14,17 +15,19 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class IocController {
 
-//  private final IocService iocService;
-//
-//  public IocController(IocService iocService) {
-//    this.iocService = iocService;
-//  }
-
   private final IocService iocService;
 
-  public IocController() {
-    this.iocService = new IocServiceImpl();
+  @Autowired
+  public IocController(IocService iocService) {
+    this.iocService = iocService;
   }
+
+//  private final IocService iocService;
+//
+//  @Autowired
+//  public IocController() {
+//    this.iocService = new IocServiceImpl();
+//  }
 
   @ResponseBody
   @GetMapping("/contents")
